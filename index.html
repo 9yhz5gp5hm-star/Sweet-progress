@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta name="theme-color" content="#f4a7b9">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="Sweet Progress">
+
+  <title>Sweet Progress 🧁</title>
+
+  <link rel="stylesheet" href="style.css">
+  <link rel="manifest" href="manifest.json">
+</head>
+
+<body>
+
+<div class="app">
+
+  <header class="header">
+    <div>
+      <p class="eyebrow">WELCOME TO</p>
+      <h1>Sweet Progress <span>🧁</span></h1>
+    </div>
+
+    <button class="reset-button" onclick="resetGame()" title="Reiniciar">
+      ↻
+    </button>
+  </header>
+
+  <section class="stats-grid">
+
+    <div class="stat-card frosting-card">
+      <span class="stat-icon">🧁</span>
+
+      <div>
+        <p>FROSTINGS</p>
+        <h2 id="frostings">0</h2>
+      </div>
+    </div>
+
+    <div class="stat-card shield-card">
+      <span class="stat-icon">🛡️</span>
+
+      <div>
+        <p>SPRINKLE SHIELDS</p>
+        <h2 id="shields">0</h2>
+      </div>
+    </div>
+
+  </section>
+
+  <section class="status-card">
+
+    <div class="status-top">
+      <div>
+        <p class="eyebrow">HOY</p>
+        <h2 id="todayStatus">Todavía no registrado</h2>
+      </div>
+
+      <span class="calendar-icon">📅</span>
+    </div>
+
+    <p class="status-description">
+      Cada pequeño paso también cuenta.
+    </p>
+
+  </section>
+
+  <section class="section">
+
+    <h2 class="section-title">
+      ¿Cómo ha ido hoy?
+    </h2>
+
+    <div class="daily-actions">
+
+      <button
+        class="action-button complete"
+        onclick="registerDay('complete')">
+
+        <span>☀️</span>
+
+        <div>
+          <strong>Día completo</strong>
+          <small>+5 Frostings 🧁</small>
+        </div>
+
+      </button>
+
+      <button
+        class="action-button partial"
+        onclick="registerDay('partial')">
+
+        <span>⛅️</span>
+
+        <div>
+          <strong>Día incompleto</strong>
+          <small>+2 Frostings 🧁</small>
+        </div>
+
+      </button>
+
+      <button
+        class="action-button absent"
+        onclick="registerDay('absent')">
+
+        <span>🌧️</span>
+
+        <div>
+          <strong>No he ido</strong>
+          <small>−2 Frostings 🧁</small>
+        </div>
+
+      </button>
+
+    </div>
+
+  </section>
+
+  <section class="shield-section">
+
+    <div class="shield-info">
+
+      <span class="big-shield">🛡️</span>
+
+      <div>
+        <h3>Sprinkle Shield</h3>
+
+        <p>
+          Si faltas un día, puede proteger la pérdida de Frostings.
+        </p>
+      </div>
+
+    </div>
+
+    <button
+      class="shield-button"
+      onclick="useShield()">
+
+      Usar shield
+
+    </button>
+
+  </section>
+
+  <section class="section">
+
+    <div class="section-header">
+
+      <h2 class="section-title">
+        Semana actual
+      </h2>
+
+      <span id="weeklyProgress">
+        0 / 5
+      </span>
+
+    </div>
+
+    <div class="week-dots">
+
+      <div class="day-dot" id="day0">L</div>
+      <div class="day-dot" id="day1">M</div>
+      <div class="day-dot" id="day2">X</div>
+      <div class="day-dot" id="day3">J</div>
+      <div class="day-dot" id="day4">V</div>
+
+    </div>
+
+  </section>
+
+  <section class="section">
+
+    <div class="section-header">
+
+      <h2 class="section-title">
+        🍬 Sweet Shop 🍬
+      </h2>
+
+      <span>Premios</span>
+
+    </div>
+
+    <div class="shop-grid" id="shop"></div>
+
+  </section>
+
+  <section class="section">
+
+    <div class="section-header">
+
+      <h2 class="section-title">
+        Historial
+      </h2>
+
+      <button
+        class="small-button"
+        onclick="clearHistory()">
+
+        Limpiar
+
+      </button>
+
+    </div>
+
+    <div
+      class="history"
+      id="history">
+
+      <p class="empty-history">
+        Todavía no hay días registrados 🧁
+      </p>
+
+    </div>
+
+  </section>
+
+  <div id="toast" class="toast"></div>
+
+</div>
+
+<script src="app.js"></script>
+
+<script>
+  if ("serviceWorker" in navigator) {
+    window.addEventListener("load", () => {
+      navigator.serviceWorker.register("sw.js");
+    });
+  }
+</script>
+
+</body>
+</html>
